@@ -5,9 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Soundboard"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
-    <Grid>
-        <DockPanel HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="210" LastChildFill="False"/>
+        Title="BipBap Soundboard" Height="659.127" Width="971.127" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid MinHeight="13" Height="627" VerticalAlignment="Top">
+        <Grid HorizontalAlignment="Left" Height="611" VerticalAlignment="Top"  Margin="6,6,0,0" Width="266">
+            <GroupBox Header="Audio devices" Height="52" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <Grid Margin="0" Height="45">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="107*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="comboPlaybackDevice" HorizontalAlignment="Right" Margin="0,0,9,0" VerticalAlignment="Top" Width="146" Height="26" Grid.ColumnSpan="2"/>
+                    <Label Content="Playback" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Custom Profiles" Height="190" HorizontalAlignment="Stretch" Margin="0,57,0,0" VerticalAlignment="Top">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="107*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Current profile:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="94"/>
+                    <Label x:Name="labelCurrentProfile" Content="Pog champ" HorizontalAlignment="Left" Margin="109,0,0,0" VerticalAlignment="Top" Width="135" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnSetProfileAsDefault" Content="Set as default" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnLoadProfile" Content="Load profile" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnSaveProfile" Content="Save profile" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnSaveProfileAs" Content="Save profile as" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="USB Soundboard" Height="151" HorizontalAlignment="Stretch" Margin="0,252,0,0" VerticalAlignment="Top">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="107*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="comboSerialPort" HorizontalAlignment="Right" Margin="0,0,9,0" VerticalAlignment="Top" Width="146" Height="26" Grid.ColumnSpan="2"/>
+                    <Label Content="Port" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
+                    <Label Content="Status:" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="89"/>
+                    <Label x:Name="labelSoundboardStatus" Content="Not detected" HorizontalAlignment="Left" Margin="99,31,0,0" VerticalAlignment="Top" Width="145" Grid.ColumnSpan="2"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="194" Margin="277,423,0,0" VerticalAlignment="Top" Width="676"/>
+        <Grid HorizontalAlignment="Left" Height="408" Margin="277,10,0,0" VerticalAlignment="Top" Width="676">
+            <Grid Height="408" Margin="135,0,131,0" VerticalAlignment="Center">
+                <Rectangle x:Name="R0C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,0,306,0" Fill="Black"/>
+                <Rectangle x:Name="R0C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,0,204,0" Fill="Black"/>
+                <Rectangle x:Name="R0C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,0,102,0" Fill="Black"/>
+                <Rectangle x:Name="R0C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,0,0,0" Fill="Black"/>
+                <Rectangle x:Name="R1C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,102,306,0" Fill="Black"/>
+                <Rectangle x:Name="R1C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,102,204,0" Fill="Black"/>
+                <Rectangle x:Name="R1C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,102,102,0" Fill="Black"/>
+                <Rectangle x:Name="R1C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,102,0,0" Fill="Black"/>
+                <Rectangle x:Name="R2C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,204,306,0" Fill="Black"/>
+                <Rectangle x:Name="R2C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,204,204,0" Fill="Black"/>
+                <Rectangle x:Name="R2C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,204,102,0" Fill="Black"/>
+                <Rectangle x:Name="R2C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,204,0,0" Fill="Black"/>
+                <Rectangle x:Name="R3C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,306,306,0" Fill="Black"/>
+                <Rectangle x:Name="R3C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,306,204,0" Fill="Black"/>
+                <Rectangle x:Name="R3C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,306,102,0" Fill="Black"/>
+                <Rectangle x:Name="R3C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,306,0,0" Fill="Black"/>
+            </Grid>
+        </Grid>
 
     </Grid>
 </Window>
