@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="BipBap Soundboard" Height="659.127" Width="971.127" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid MinHeight="13" Height="627" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid HorizontalAlignment="Left" Height="611" VerticalAlignment="Top"  Margin="6,6,0,0" Width="266">
             <GroupBox Header="Audio devices" Height="52" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                 <Grid Margin="0" Height="45">
@@ -14,7 +17,7 @@
                         <ColumnDefinition Width="107*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="comboPlaybackDevice" HorizontalAlignment="Right" Margin="0,0,9,0" VerticalAlignment="Top" Width="146" Height="26" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="comboPlaybackDevice" x:FieldModifier="public" HorizontalAlignment="Right" Margin="0,0,9,0" VerticalAlignment="Top" Width="146" Height="26" Grid.ColumnSpan="2"/>
                     <Label Content="Playback" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
                 </Grid>
             </GroupBox>
@@ -25,7 +28,7 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Current profile:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="94"/>
-                    <Label x:Name="labelCurrentProfile" Content="Pog champ" HorizontalAlignment="Left" Margin="109,0,0,0" VerticalAlignment="Top" Width="135" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelCurrentProfile" x:FieldModifier="public" Content="Pog champ" HorizontalAlignment="Left" Margin="109,0,0,0" VerticalAlignment="Top" Width="135" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnSetProfileAsDefault" Content="Set as default" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnLoadProfile" Content="Load profile" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnSaveProfile" Content="Save profile" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
@@ -38,10 +41,10 @@
                         <ColumnDefinition Width="107*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="comboSerialPort" HorizontalAlignment="Right" Margin="0,0,9,0" VerticalAlignment="Top" Width="146" Height="26" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="comboSerialPort" x:FieldModifier="public" HorizontalAlignment="Right" Margin="0,0,9,0" VerticalAlignment="Top" Width="146" Height="26" Grid.ColumnSpan="2"/>
                     <Label Content="Port" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
                     <Label Content="Status:" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="89"/>
-                    <Label x:Name="labelSoundboardStatus" Content="Not detected" HorizontalAlignment="Left" Margin="99,31,0,0" VerticalAlignment="Top" Width="145" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelSoundboardStatus" x:FieldModifier="public" Content="Not detected" HorizontalAlignment="Left" Margin="99,31,0,0" VerticalAlignment="Top" Width="145" Grid.ColumnSpan="2"/>
                 </Grid>
             </GroupBox>
         </Grid>
