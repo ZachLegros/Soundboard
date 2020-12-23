@@ -17,15 +17,7 @@ namespace Soundboard
     {
         public App()
         { 
-            MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
-            object[] devices = enumerator.EnumerateAudioEndPoints(DataFlow.All, DeviceState.Active).ToArray();
-
-            foreach (object device in devices)
-            {
-                // need to check data bindings
-                //MainWindow.comboPlaybackDevice.Items.Add(device);
-            }
-            Console.WriteLine("yop");
+            
         }
     }
 }
