@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO.Ports;
 
 namespace Soundboard
 {
@@ -64,20 +65,62 @@ namespace Soundboard
     /// </summary>
     public partial class MainWindow : Window
     {
+        private SerialPort port = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+
         public MainWindow()
         {
             InitializeComponent();
+
+            string[] ports = SerialPort.GetPortNames();
+
+            foreach (string port in ports)
+            {
+                comboSerialPort.Items.Add(port);
+            }
+
             MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
             object[] devices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active).ToArray();
             string[] devicesNames = new string[devices.Length];
 
-            for (int i=0; i< devicesNames.Length; i++)
+            for (int i = 0; i < devicesNames.Length; i++)
             {
                 devicesNames[i] = devices[i].ToString();
             }
 
-            this.DataContext = new ViewModel(devicesNames);
-    
+            comboPlaybackDevice.DataContext = new ViewModel(devicesNames);
+            SerialPortProgram();
+        }
+
+        private void HandleButtonPress(string componentName)
+        {
+            Rectangle wantedNode = (Rectangle)buttonMatrix.FindName(componentName);
+            wantedNode.Fill = new SolidColorBrush(Color.FromRgb(235, 64, 52));
+        }
+
+        [STAThread]
+        private void SerialPortProgram()
+        {
+            port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+            port.Open();
+
+            // Enter an application loop to keep this thread alive 
+            Console.ReadLine();
+        }
+
+        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            //Console.WriteLine(port.ReadExisting());
+            int data = int.Parse(port.ReadExisting());
+            int row = data / 4;
+            int col = data % 4;
+
+            string componentName = "R" + row + "C" + col;
+
+            this.Dispatcher.Invoke(() =>
+            {
+                HandleButtonPress(componentName);
+            });
         }
     }
 }
+
