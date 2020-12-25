@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
+using System.Threading;
 
 namespace Soundboard
 {
@@ -66,11 +67,11 @@ namespace Soundboard
     public partial class MainWindow : Window
     {
         private SerialPort port = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
-
         public MainWindow()
         {
             InitializeComponent();
 
+            // initialize serial port combobox items
             string[] ports = SerialPort.GetPortNames();
 
             foreach (string port in ports)
@@ -78,6 +79,7 @@ namespace Soundboard
                 comboSerialPort.Items.Add(port);
             }
 
+            // initialize playback device combobox items
             MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
             object[] devices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active).ToArray();
             string[] devicesNames = new string[devices.Length];
@@ -86,41 +88,67 @@ namespace Soundboard
             {
                 devicesNames[i] = devices[i].ToString();
             }
-
             comboPlaybackDevice.DataContext = new ViewModel(devicesNames);
-            SerialPortProgram();
+
+            // initialize serial communication with soundboard
+            Thread serialCom = new Thread(new ThreadStart(SerialPortProgram));
+            serialCom.Start();
         }
 
-        private void HandleButtonPress(string componentName)
-        {
-            Rectangle wantedNode = (Rectangle)buttonMatrix.FindName(componentName);
-            wantedNode.Fill = new SolidColorBrush(Color.FromRgb(235, 64, 52));
-        }
-
-        [STAThread]
         private void SerialPortProgram()
         {
-            port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-            port.Open();
+            while (true)
+            {
+                try
+                {
+                    port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
 
-            // Enter an application loop to keep this thread alive 
-            Console.ReadLine();
+                    if (!port.IsOpen)
+                    {
+                        port.Open();
+                    }
+
+                    // Enter an application loop to keep this thread alive 
+                    Console.ReadLine();
+                }
+                catch (System.IO.IOException e)
+                {
+                    if (port.IsOpen)
+                    {
+                        port.Close();
+                    }
+                }
+                Thread.Sleep(500);
+            }
         }
 
         private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //Console.WriteLine(port.ReadExisting());
-            int data = int.Parse(port.ReadExisting());
-            int row = data / 4;
-            int col = data % 4;
+            string data = port.ReadExisting();
+            string[] matrix = data.Split(',');
+            int parsedData;
 
-            string componentName = "R" + row + "C" + col;
-
-            this.Dispatcher.Invoke(() =>
+            for (int i=0; i<matrix.Length; i++)
             {
-                HandleButtonPress(componentName);
-            });
-        }
+                string led = matrix[i];
+                if (int.TryParse(led, out parsedData))
+                {
+                    int row = i / 4;
+                    int col = i % 4;
+
+                    string componentName = "R" + row + "C" + col;
+
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        Rectangle wantedNode = (Rectangle)buttonMatrix.FindName(componentName);
+                        if (parsedData == 1)
+                            wantedNode.Fill = new SolidColorBrush(Color.FromRgb(235, 64, 52));
+                        else
+                            wantedNode.Fill = null;
+                    });
+                }
+                }
+            }
     }
 }
 
