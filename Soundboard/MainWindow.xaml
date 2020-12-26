@@ -48,9 +48,13 @@
                 </Grid>
             </GroupBox>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="194" Margin="277,423,0,0" VerticalAlignment="Top" Width="676"/>
+        <Grid HorizontalAlignment="Left" Height="204" Margin="272,423,0,0" VerticalAlignment="Top" Width="693">
+            <GroupBox Header="Sounds" HorizontalAlignment="Left" Height="184" Margin="10,10,0,0" VerticalAlignment="Top" Width="673">
+                <Button x:Name="btnAddSound" Content="Add sound to library" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="168"/>
+            </GroupBox>
+        </Grid>
         <Grid x:Name="buttonMatrix" HorizontalAlignment="Left" Height="408" Margin="277,10,0,0" VerticalAlignment="Top" Width="676">
-            <Grid Height="408" Margin="135,0,131,0" VerticalAlignment="Center">
+            <Grid Height="408" Margin="135,10,131,-10" VerticalAlignment="Center">
                 <Rectangle x:Name="R0C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,0,306,0" Stroke="#FF464545" StrokeThickness="4"/>
                 <Rectangle x:Name="R0C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,0,204,0"  Stroke="#FF464545" StrokeThickness="4"/>
                 <Rectangle x:Name="R0C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,0,102,0"  Stroke="#FF464545" StrokeThickness="4"/>

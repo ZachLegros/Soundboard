@@ -70,6 +70,7 @@ namespace Soundboard
         public MainWindow()
         {
             InitializeComponent();
+            btnAddSound.Click += AddSoundEvent.AddSound;
 
             // initialize serial port combobox items
             string[] ports = SerialPort.GetPortNames();
@@ -90,9 +91,9 @@ namespace Soundboard
             }
             comboPlaybackDevice.DataContext = new ViewModel(devicesNames);
 
-            // initialize serial communication with soundboard
-            Thread serialCom = new Thread(new ThreadStart(SerialPortProgram));
-            serialCom.Start();
+            //// initialize serial communication with soundboard
+            //Thread serialCom = new Thread(new ThreadStart(SerialPortProgram));
+            //serialCom.Start();
         }
 
         private void SerialPortProgram()
@@ -111,7 +112,7 @@ namespace Soundboard
                     // Enter an application loop to keep this thread alive 
                     Console.ReadLine();
                 }
-                catch (System.IO.IOException e)
+                catch
                 {
                     if (port.IsOpen)
                     {
@@ -128,25 +129,28 @@ namespace Soundboard
             string[] matrix = data.Split(',');
             int parsedData;
 
-            for (int i=0; i<matrix.Length; i++)
+            if (matrix.Length == 16)
             {
-                string led = matrix[i];
-                if (int.TryParse(led, out parsedData))
+                for (int i=0; i<matrix.Length; i++)
                 {
-                    int row = i / 4;
-                    int col = i % 4;
-
-                    string componentName = "R" + row + "C" + col;
-
-                    this.Dispatcher.Invoke(() =>
+                    string led = matrix[i];
+                    if (int.TryParse(led, out parsedData))
                     {
-                        Rectangle wantedNode = (Rectangle)buttonMatrix.FindName(componentName);
-                        if (parsedData == 1)
-                            wantedNode.Fill = new SolidColorBrush(Color.FromRgb(235, 64, 52));
-                        else
-                            wantedNode.Fill = null;
-                    });
-                }
+                        int row = i / 4;
+                        int col = i % 4;
+
+                        string componentName = "R" + row + "C" + col;
+
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            Rectangle wantedNode = (Rectangle)buttonMatrix.FindName(componentName);
+                            if (parsedData == 1)
+                                wantedNode.Fill = new SolidColorBrush(Color.FromRgb(235, 64, 52));
+                            else
+                                wantedNode.Fill = null;
+                        });
+                    }
+                    }
                 }
             }
     }
