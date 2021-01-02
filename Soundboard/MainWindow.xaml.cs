@@ -164,23 +164,26 @@ namespace Soundboard
         {
             while (true)
             {
-                try
+                if (port != null)
                 {
-                    port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-
-                    if (!port.IsOpen)
+                    try
                     {
-                        port.Open();
+                        port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+
+                        if (!port.IsOpen)
+                        {
+                            port.Open();
+                        }
+
+                        // Enter an application loop to keep this thread alive 
+                        Console.ReadLine();
                     }
-
-                    // Enter an application loop to keep this thread alive 
-                    Console.ReadLine();
-                }
-                catch
-                {
-                    if (port != null && port.IsOpen)
+                    catch
                     {
-                        port.Close();
+                        if (port.IsOpen)
+                        {
+                            port.Close();
+                        }
                     }
                 }
                 Thread.Sleep(500);
@@ -289,6 +292,8 @@ namespace Soundboard
                     case "comboSerialPort":
                         string portName = cmb.SelectedItem.ToString();
                         Config.serialPort = portName;
+                        if (port != null && port.IsOpen)
+                            port.Close();
                         port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
                         break;
                     default:
