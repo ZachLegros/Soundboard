@@ -1,16 +1,16 @@
-﻿<Window x:Class="Soundboard.InputProfileName"
+﻿<Window x:Class="Soundboard.InputBox"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Soundboard"
         mc:Ignorable="d"
-        Title="Profile Name" Height="183" Width="286" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" SizeToContent="Width">
+        Title="Title" Height="183" Width="286" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" SizeToContent="Width">
     <Grid Margin="0,0,0,-1" HorizontalAlignment="Left" Width="267">
         <Button x:Name="BtnOK" Click="BtnOK_Click" Content="OK" HorizontalAlignment="Left" Margin="179,107,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="BtnCancel" Click="BtnCancel_Click" Content="Cancel" HorizontalAlignment="Left" Margin="91,107,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="TxtBoxProfileName" HorizontalAlignment="Left" Height="23" Margin="10,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244"/>
-        <Label Content="Enter the new profile name:" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtBox" HorizontalAlignment="Left" Height="23" Margin="10,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244"/>
+        <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

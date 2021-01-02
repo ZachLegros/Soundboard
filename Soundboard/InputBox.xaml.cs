@@ -15,29 +15,31 @@ using System.Windows.Shapes;
 namespace Soundboard
 {
     /// <summary>
-    /// Interaction logic for InputProfileName.xaml
+    /// Interaction logic for InputBox.xaml
     /// </summary>
-    public partial class InputProfileName : Window
+    public partial class InputBox : Window
     {
         bool canceled = false;
 
-        public InputProfileName()
+        public InputBox(string title, string label)
         {
             InitializeComponent();
+            Title = title;
+            label1.Content = label;
         }
 
         public string ShowDialogAndGetText()
         {
             ShowDialog();
             if (!canceled)
-                return TxtBoxProfileName.Text;
+                return TxtBox.Text;
             else
                 return null;
         }
 
-        public void BtnOK_Click(object sender, RoutedEventArgs e) 
+        public void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtBoxProfileName.Text == "" || TxtBoxProfileName.Text == null)
+            if (TxtBox.Text == "" || TxtBox.Text == null)
                 MessageBox.Show("Invalid input", "Error");
             else
             {

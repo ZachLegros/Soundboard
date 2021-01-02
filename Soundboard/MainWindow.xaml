@@ -30,8 +30,8 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Current profile:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="94"/>
-                    <Label x:Name="labelCurrentProfile" x:FieldModifier="public" Content="Pog champ" HorizontalAlignment="Left" Margin="109,0,0,0" VerticalAlignment="Top" Width="135" Grid.ColumnSpan="2"/>
-                    <Button x:Name="btnSetProfileAsDefault" Content="Set as default" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelCurrentProfile" x:FieldModifier="public" Content="Profile Name" HorizontalAlignment="Left" Margin="109,0,0,0" VerticalAlignment="Top" Width="135" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnSetProfileAsDefault" Click="btnSetProfileAsDefault_Click" Content="Set as default" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnNewProfile" Click="NewProfile" Content="New profile" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnLoadProfile" Content="Load profile" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnSaveProfile" Content="Save profile" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
@@ -54,7 +54,7 @@
                         <ColumnDefinition Width="34*"/>
                         <ColumnDefinition Width="11*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="btnAddSound" Content="Add sound to library" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btnAddSound" Click="AddSound" Content="Add sound to library" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="3"/>
                 </Grid>
             </GroupBox>
         </Grid>

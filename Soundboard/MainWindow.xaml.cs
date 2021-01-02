@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Threading;
+using Microsoft.Win32;
 
 namespace Soundboard
 {
@@ -70,12 +71,12 @@ namespace Soundboard
     {
         //private SerialPort port;
         private SerialPort port = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
-        private SoundProfile profile;
+        private SoundProfile Profile;
+        private SoundboardConfig Config;
 
         public MainWindow()
         {
             InitializeComponent();
-            btnAddSound.Click += AddSoundEvent.AddSound;
 
             // initialize serial port combobox items
             string[] ports = SerialPort.GetPortNames();
@@ -86,20 +87,76 @@ namespace Soundboard
             }
 
             // initialize playback device combobox items
-            MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
-            object[] devices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active).ToArray();
-            string[] devicesNames = new string[devices.Length];
+            string[] deviceNames = GetPlaybackDevices();
+            comboPlaybackDevice.DataContext = new ViewModel(deviceNames);
 
-            for (int i = 0; i < devicesNames.Length; i++)
+            // loading preferences
+            LoadConfig();
+            LoadProfile(Config.profile);
+
+            if (Profile == null)
             {
-                devicesNames[i] = devices[i].ToString();
+                NewProfile(this, null);
+                SetProfileAsDefault(Profile.GetName());
             }
-            comboPlaybackDevice.DataContext = new ViewModel(devicesNames);
 
+            InitializeUI();
 
             //// initialize serial communication with soundboard
             //Thread serialCom = new Thread(new ThreadStart(SerialPortProgram));
             //serialCom.Start();
+        }
+
+        private void LoadConfig()
+        {
+            Config = SoundboardConfig.Load();
+        }
+
+        private void LoadProfile(string profileName)
+        {
+            if (profileName != null && !profileName.Equals(""))
+            {
+                try
+                {
+                    Profile = SoundProfile.FromFile(profileName);
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void InitializeUI()
+        {
+            // set profile label to default profile
+            labelCurrentProfile.Content = Profile.GetName();
+
+            if (Config.serialPort != null)
+            {
+                string[] ports = SerialPort.GetPortNames();
+                foreach (string port in ports)
+                {
+                    if (Config.serialPort.Equals(port))
+                    {
+                        comboSerialPort.SelectedItem = port;
+                    }
+                }
+            }
+
+            if (Config.playbackDevice != null)
+            {
+                string[] deviceNames = GetPlaybackDevices();
+                foreach (string device in deviceNames)
+                {
+                    if (Config.playbackDevice.Equals(device))
+                    {
+                        comboPlaybackDevice.SelectedItem = device;
+                    }
+                }
+            }
+
+
         }
 
         private void SerialPortProgram()
@@ -160,16 +217,64 @@ namespace Soundboard
             }
         }
 
+        public string[] GetPlaybackDevices()
+        {
+            MMDeviceEnumerator enumerator = new MMDeviceEnumerator();
+            object[] devices = enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active).ToArray();
+            string[] devicesNames = new string[devices.Length];
+
+            for (int i = 0; i < devicesNames.Length; i++)
+            {
+                devicesNames[i] = devices[i].ToString();
+            }
+
+            return devicesNames;
+        }
+
+        public void btnSetProfileAsDefault_Click(object sender, RoutedEventArgs e)
+        {
+            SetProfileAsDefault(Profile.GetName());
+        }
+
+        public void SetProfileAsDefault(string profileName)
+        {
+            if (Config.profile != profileName)
+            {
+                Config.profile = profileName;
+                Config.Save();
+            }
+        }
+
         public void NewProfile(object sender, RoutedEventArgs e)
         {
-            string inputRead = new InputProfileName().ShowDialogAndGetText();
+            string inputRead = new InputBox("New sound Profile", "Enter the sound Profile name:").ShowDialogAndGetText();
 
             if (inputRead != null && !inputRead.Equals(""))
             {
-                profile = new SoundProfile(inputRead, null);
-                profile.Save();
+                Profile = new SoundProfile(inputRead, null);
+                Profile.Save();
             }
         }
+
+        public void AddSound(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = "Select sound file";
+            openFileDialog1.DefaultExt = "mp3";
+            openFileDialog1.Filter = "mp3 file (*.mp3)|*.mp3|wav file (*.wav)|*.wav";
+
+            if (openFileDialog1.ShowDialog() == true)
+            {
+                string soundPath = openFileDialog1.FileName;
+                string[] splittedPath = soundPath.Split('\\');
+                string soundName = splittedPath[splittedPath.Length - 1];
+
+                System.IO.File.Copy(soundPath, Environment.CurrentDirectory + "\\Sounds\\" + soundName, true);
+
+                MessageBox.Show(soundName + " was successfully added to the library.", "BibBap Soundboard", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
     }
 }
 

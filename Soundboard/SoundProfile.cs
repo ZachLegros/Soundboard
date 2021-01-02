@@ -9,7 +9,8 @@ namespace Soundboard
     {
         private string Name;
         private AudioFileReader[] AudioFiles;
-        private string[] SoundNames;
+        private string[] soundNames;
+        public readonly static string SoundProfilePathRoot = Environment.CurrentDirectory + "\\SoundProfiles\\";
 
         private class Items
         {
@@ -17,9 +18,9 @@ namespace Soundboard
             public string[] soundNames { get; set; }
         }
 
-        public static SoundProfile FromFile(string fileName)
+        public static SoundProfile FromFile(string profileName)
         {
-            string jsonString = File.ReadAllText(fileName);
+            string jsonString = File.ReadAllText(SoundProfilePathRoot + profileName + ".json");
             Items items = JsonSerializer.Deserialize<Items>(jsonString);
 
             SoundProfile soundProfile = new SoundProfile(items.name, items.soundNames);
@@ -28,17 +29,17 @@ namespace Soundboard
             return soundProfile;
         }
 
-        public SoundProfile(string profileName, string[] SoundNames) 
+        public SoundProfile(string profileName, string[] soundNames) 
         {
             Name = profileName;
             
-            if (SoundNames == null || SoundNames.Length != 16)
+            if (soundNames == null || soundNames.Length != 16)
             {
-                this.SoundNames = new string[16];
+                this.soundNames = new string[16];
             }
             else
             {
-                this.SoundNames = SoundNames;
+                this.soundNames = soundNames;
             }
 
             AudioFiles = new AudioFileReader[16];
@@ -46,11 +47,11 @@ namespace Soundboard
             
         public void LoadSoundMatrix(string[] soundNames)
         {
-            if (soundNames.Length != 16)
+            if (soundNames.Length == 16)
             {
                 for (int i=0; i<16; i++)
                 {
-                    if (!soundNames[i].Equals("") && soundNames[i] != null)
+                    if (soundNames[i] != null && !soundNames[i].Equals(""))
                     {
                         try
                         {
@@ -98,14 +99,19 @@ namespace Soundboard
             }
         }
 
+        public string GetName()
+        {
+            return Name;
+        }
+
         public void Save()
         {
             Items items = new Items();
             items.name = Name;
-            items.soundNames = SoundNames;
+            items.soundNames = soundNames;
 
             string jsonString = JsonSerializer.Serialize(items);
-            File.WriteAllText(Environment.CurrentDirectory + "\\SoundProfiles\\" + items.name + ".json", jsonString);
+            File.WriteAllText(SoundProfilePathRoot + items.name + ".json", jsonString);
         }        
     }
 }
