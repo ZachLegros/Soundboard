@@ -69,10 +69,10 @@ namespace Soundboard
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private SerialPort port;
-        private SerialPort port = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+        private SerialPort port;
         private SoundProfile Profile;
         private SoundboardConfig Config;
+        private ViewModel model;
 
         public MainWindow()
         {
@@ -88,7 +88,8 @@ namespace Soundboard
 
             // initialize playback device combobox items
             string[] deviceNames = GetPlaybackDevices();
-            comboPlaybackDevice.DataContext = new ViewModel(deviceNames);
+            model = new ViewModel(deviceNames);
+            comboPlaybackDevice.DataContext = model;
 
             // loading preferences
             LoadConfig();
@@ -102,9 +103,9 @@ namespace Soundboard
 
             InitializeUI();
 
-            //// initialize serial communication with soundboard
-            //Thread serialCom = new Thread(new ThreadStart(SerialPortProgram));
-            //serialCom.Start();
+            // initialize serial communication with soundboard
+            Thread serialCom = new Thread(new ThreadStart(SerialPortProgram));
+            serialCom.Start();
         }
 
         private void LoadConfig()
@@ -135,11 +136,11 @@ namespace Soundboard
             if (Config.serialPort != null)
             {
                 string[] ports = SerialPort.GetPortNames();
-                foreach (string port in ports)
+                for (int i = 0; i < ports.Length; i++)
                 {
-                    if (Config.serialPort.Equals(port))
+                    if (Config.serialPort.Equals(ports[i]))
                     {
-                        comboSerialPort.SelectedItem = port;
+                        comboSerialPort.SelectedIndex = i;
                     }
                 }
             }
@@ -147,16 +148,16 @@ namespace Soundboard
             if (Config.playbackDevice != null)
             {
                 string[] deviceNames = GetPlaybackDevices();
-                foreach (string device in deviceNames)
+                for (int i = 0; i < deviceNames.Length; i++)
                 {
-                    if (Config.playbackDevice.Equals(device))
+                    if (Config.playbackDevice.Equals(deviceNames[i]))
                     {
-                        comboPlaybackDevice.SelectedItem = device;
+                        model.SelectedPlaybackDevice = model.PlaybackDevices[i];
+                        model.SelectedPlaybackDeviceId = i;
                     }
                 }
+
             }
-
-
         }
 
         private void SerialPortProgram()
@@ -177,7 +178,7 @@ namespace Soundboard
                 }
                 catch
                 {
-                    if (port.IsOpen)
+                    if (port != null && port.IsOpen)
                     {
                         port.Close();
                     }
@@ -206,7 +207,7 @@ namespace Soundboard
 
                         Dispatcher.Invoke(() =>
                         {
-                            Rectangle wantedNode = (Rectangle)buttonMatrix.FindName(componentName);
+                            Rectangle wantedNode = FindName(componentName) as Rectangle;
                             if (parsedData == 1)
                                 wantedNode.Fill = new SolidColorBrush(Color.FromRgb(235, 64, 52));
                             else
@@ -286,7 +287,9 @@ namespace Soundboard
                         Config.playbackDevice = ((PlaybackDevice)cmb.SelectedItem).DeviceName;
                         break;
                     case "comboSerialPort":
-                        Config.serialPort = cmb.SelectedItem.ToString();
+                        string portName = cmb.SelectedItem.ToString();
+                        Config.serialPort = portName;
+                        port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
                         break;
                     default:
                         break;

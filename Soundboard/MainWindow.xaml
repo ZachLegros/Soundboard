@@ -64,13 +64,7 @@
         </Grid>
         <Grid x:Name="buttonMatrix" HorizontalAlignment="Left" Height="408" Margin="277,10,0,0" VerticalAlignment="Top" Width="676">
             <Grid Height="408" Margin="135,10,131,-10" VerticalAlignment="Center">
-                <Button x:Name="btnR0C0">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Rectangle x:Name="R0C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,0,306,0" Stroke="#FF464545" StrokeThickness="4"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <Rectangle x:Name="R0C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,0,306,0" Stroke="#FF464545" StrokeThickness="4"/>
                 <Rectangle x:Name="R0C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,0,204,0"  Stroke="#FF464545" StrokeThickness="4"/>
                 <Rectangle x:Name="R0C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,0,102,0"  Stroke="#FF464545" StrokeThickness="4"/>
                 <Rectangle x:Name="R0C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,0,0,0"  Stroke="#FF464545" StrokeThickness="4"/>
