@@ -68,7 +68,10 @@ namespace Soundboard
     /// </summary>
     public partial class MainWindow : Window
     {
+        //private SerialPort port;
         private SerialPort port = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+        private SoundProfile profile;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -144,7 +147,7 @@ namespace Soundboard
 
                         string componentName = "R" + row + "C" + col;
 
-                        this.Dispatcher.Invoke(() =>
+                        Dispatcher.Invoke(() =>
                         {
                             Rectangle wantedNode = (Rectangle)buttonMatrix.FindName(componentName);
                             if (parsedData == 1)
@@ -153,9 +156,20 @@ namespace Soundboard
                                 wantedNode.Fill = null;
                         });
                     }
-                    }
                 }
             }
+        }
+
+        public void NewProfile(object sender, RoutedEventArgs e)
+        {
+            string inputRead = new InputProfileName().ShowDialogAndGetText();
+
+            if (inputRead != null && !inputRead.Equals(""))
+            {
+                profile = new SoundProfile(inputRead, null);
+                profile.Save();
+            }
+        }
     }
 }
 

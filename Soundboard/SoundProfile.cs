@@ -13,14 +13,14 @@ namespace Soundboard
 
         private class Items
         {
-            public string name;
-            public string[] soundNames;
+            public string name { get; set; }
+            public string[] soundNames { get; set; }
         }
 
         public static SoundProfile FromFile(string fileName)
         {
             string jsonString = File.ReadAllText(fileName);
-            Items items = System.Text.Json.JsonSerializer.Deserialize<Items>(jsonString);
+            Items items = JsonSerializer.Deserialize<Items>(jsonString);
 
             SoundProfile soundProfile = new SoundProfile(items.name, items.soundNames);
             soundProfile.LoadSoundMatrix(items.soundNames);
