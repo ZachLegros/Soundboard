@@ -63,23 +63,51 @@
             </GroupBox>
         </Grid>
         <Grid x:Name="buttonMatrix" HorizontalAlignment="Left" Height="408" Margin="277,10,0,0" VerticalAlignment="Top" Width="676">
-            <Grid Height="408" Margin="135,10,131,-10" VerticalAlignment="Center">
-                <Rectangle x:Name="R0C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,0,306,0" Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R0C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,0,204,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R0C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,0,102,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R0C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,0,0,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R1C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,102,306,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R1C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,102,204,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R1C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,102,102,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R1C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,102,0,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R2C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,204,306,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R2C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,204,204,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R2C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,204,102,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R2C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,204,0,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R3C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,306,306,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R3C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,306,204,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R3C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,306,102,0"  Stroke="#FF464545" StrokeThickness="4"/>
-                <Rectangle x:Name="R3C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,306,0,0"  Stroke="#FF464545" StrokeThickness="4"/>
+            <Grid Height="398" Margin="135,10,131,0" VerticalAlignment="Center" IsSharedSizeScope="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" SharedSizeGroup="Row" />
+                    <RowDefinition Height="100" SharedSizeGroup="Row" />
+                    <RowDefinition Height="100" SharedSizeGroup="Row" />
+                    <RowDefinition Height="100" SharedSizeGroup="Row" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" SharedSizeGroup="Col" />
+                    <ColumnDefinition Width="100" SharedSizeGroup="Col" />
+                    <ColumnDefinition Width="100" SharedSizeGroup="Col" />
+                    <ColumnDefinition Width="100" SharedSizeGroup="Col" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="txtR0C0" Grid.Column="0" Grid.Row="0" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R0C0" Grid.Column="0" Grid.Row="0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR0C1" Grid.Column="1" Grid.Row="0" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R0C1" Grid.Column="1" Grid.Row="0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR0C2" Grid.Column="2" Grid.Row="0" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R0C2" Grid.Column="2" Grid.Row="0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR0C3" Grid.Column="3" Grid.Row="0" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R0C3" Grid.Column="3" Grid.Row="0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR1C0" Grid.Column="0" Grid.Row="1" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R1C0" Grid.Column="0" Grid.Row="1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR1C1" Grid.Column="1" Grid.Row="1" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R1C1" Grid.Column="1" Grid.Row="1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR1C2" Grid.Column="2" Grid.Row="1" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R1C2" Grid.Column="2" Grid.Row="1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR1C3" Grid.Column="3" Grid.Row="1" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R1C3" Grid.Column="3" Grid.Row="1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR2C0" Grid.Column="0" Grid.Row="2" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R2C0" Grid.Column="0" Grid.Row="2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR2C1" Grid.Column="1" Grid.Row="2" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R2C1" Grid.Column="1" Grid.Row="2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR2C2" Grid.Column="2" Grid.Row="2" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R2C2" Grid.Column="2" Grid.Row="2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR2C3" Grid.Column="3" Grid.Row="2" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R2C3" Grid.Column="3" Grid.Row="2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR3C0" Grid.Column="0" Grid.Row="3" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R3C0" Grid.Column="0" Grid.Row="3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR3C1" Grid.Column="1" Grid.Row="3" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R3C1" Grid.Column="1" Grid.Row="3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR3C2" Grid.Column="2" Grid.Row="3" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="65"/>
+                <Rectangle x:Name="R3C2" Grid.Column="2" Grid.Row="3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
+                <TextBlock x:Name="txtR3C3" Grid.Column="3" Grid.Row="3" Text="Sound Name" TextWrapping="Wrap" TextAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Width="66"/>
+                <Rectangle x:Name="R3C3" Grid.Column="3" Grid.Row="3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Stroke="#FF464545" StrokeThickness="4"/>
             </Grid>
         </Grid>
 
