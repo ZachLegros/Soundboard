@@ -275,6 +275,26 @@ namespace Soundboard
             }
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cmb = sender as ComboBox;
+            if (cmb.SelectedItem != null)
+            {
+                switch (cmb.Name)
+                {
+                    case "comboPlaybackDevice":
+                        Config.playbackDevice = ((PlaybackDevice)cmb.SelectedItem).DeviceName;
+                        break;
+                    case "comboSerialPort":
+                        Config.serialPort = cmb.SelectedItem.ToString();
+                        break;
+                    default:
+                        break;
+                }
+
+                Config.Save();
+            }
+        }
     }
 }
 
