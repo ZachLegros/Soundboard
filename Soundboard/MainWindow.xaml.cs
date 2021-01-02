@@ -91,6 +91,7 @@ namespace Soundboard
             }
             comboPlaybackDevice.DataContext = new ViewModel(devicesNames);
 
+
             //// initialize serial communication with soundboard
             //Thread serialCom = new Thread(new ThreadStart(SerialPortProgram));
             //serialCom.Start();

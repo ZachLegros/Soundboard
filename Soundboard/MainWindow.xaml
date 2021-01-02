@@ -23,8 +23,8 @@
                     <Label Content="Volume" HorizontalAlignment="Left" Margin="9,28,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Custom Profiles" Height="190" HorizontalAlignment="Stretch" Margin="0,95,0,0" VerticalAlignment="Top">
-                <Grid Margin="0">
+            <GroupBox Header="Custom Profiles" Height="165" HorizontalAlignment="Stretch" Margin="0,95,0,0" VerticalAlignment="Top">
+                <Grid Margin="0" Height="167" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="107*"/>
                         <ColumnDefinition Width="10*"/>
@@ -34,10 +34,9 @@
                     <Button x:Name="btnSetProfileAsDefault" Content="Set as default" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnLoadProfile" Content="Load profile" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnSaveProfile" Content="Save profile" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
-                    <Button x:Name="btnSaveProfileAs" Content="Save profile as" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="USB Soundboard" Height="52" HorizontalAlignment="Stretch" Margin="0,290,0,0" VerticalAlignment="Top">
+            <GroupBox Header="USB Soundboard" Height="52" HorizontalAlignment="Stretch" Margin="0,265,0,0" VerticalAlignment="Top">
                 <Grid Height="26" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="107*"/>
@@ -47,15 +46,30 @@
                     <Label Content="Port" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
                 </Grid>
             </GroupBox>
+            <GroupBox Header="Sound Library" Height="289" HorizontalAlignment="Stretch" Margin="0,322,0,0" VerticalAlignment="Top">
+                <Grid Margin="0,0,0,-3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="82*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="11*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnAddSound" Content="Add sound to library" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="3"/>
+                </Grid>
+            </GroupBox>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="204" Margin="272,423,0,0" VerticalAlignment="Top" Width="693">
-            <GroupBox Header="Sounds" HorizontalAlignment="Left" Height="184" Margin="10,10,0,0" VerticalAlignment="Top" Width="673">
-                <Button x:Name="btnAddSound" Content="Add sound to library" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="168"/>
+            <GroupBox Header="Selected Sound Button" HorizontalAlignment="Left" Height="184" Margin="10,10,0,0" VerticalAlignment="Top" Width="673">
             </GroupBox>
         </Grid>
         <Grid x:Name="buttonMatrix" HorizontalAlignment="Left" Height="408" Margin="277,10,0,0" VerticalAlignment="Top" Width="676">
             <Grid Height="408" Margin="135,10,131,-10" VerticalAlignment="Center">
-                <Rectangle x:Name="R0C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,0,306,0" Stroke="#FF464545" StrokeThickness="4"/>
+                <Button x:Name="btnR0C0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Rectangle x:Name="R0C0" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="0,0,306,0" Stroke="#FF464545" StrokeThickness="4"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
                 <Rectangle x:Name="R0C1" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="102,0,204,0"  Stroke="#FF464545" StrokeThickness="4"/>
                 <Rectangle x:Name="R0C2" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="204,0,102,0"  Stroke="#FF464545" StrokeThickness="4"/>
                 <Rectangle x:Name="R0C3" RadiusX="12" RadiusY="12" Height="95" VerticalAlignment="Top" Width="95" Margin="306,0,0,0"  Stroke="#FF464545" StrokeThickness="4"/>

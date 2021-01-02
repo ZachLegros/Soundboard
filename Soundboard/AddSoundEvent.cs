@@ -17,7 +17,7 @@ public class AddSoundEvent
 			string[] splittedPath = soundPath.Split('\\');
 			string soundName = splittedPath[splittedPath.Length-1];
 
-            System.IO.File.Copy(soundPath, System.Environment.CurrentDirectory + "\\Sounds\\" + soundName);
+            System.IO.File.Copy(soundPath, System.Environment.CurrentDirectory + "\\Sounds\\" + soundName, true);
 
             MessageBox.Show(soundName + " was successfully added to the library.", "BibBap Soundboard", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
