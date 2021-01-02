@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text.Json;
 using NAudio.Wave;
 
 namespace Soundboard
@@ -8,11 +9,12 @@ namespace Soundboard
     {
         private string Name;
         private AudioFileReader[] AudioFiles;
+        private string[] SoundNames;
 
         private class Items
         {
-            public string Name;
-            public string[] SoundNames;
+            public string name;
+            public string[] soundNames;
         }
 
         public static SoundProfile FromFile(string fileName)
@@ -20,15 +22,25 @@ namespace Soundboard
             string jsonString = File.ReadAllText(fileName);
             Items items = System.Text.Json.JsonSerializer.Deserialize<Items>(jsonString);
 
-            SoundProfile soundProfile = new SoundProfile(items.Name);
-            soundProfile.LoadSoundMatrix(items.SoundNames);
+            SoundProfile soundProfile = new SoundProfile(items.name, items.soundNames);
+            soundProfile.LoadSoundMatrix(items.soundNames);
 
             return soundProfile;
         }
 
-        public SoundProfile(string profileName) 
+        public SoundProfile(string profileName, string[] SoundNames) 
         {
             Name = profileName;
+            
+            if (SoundNames == null || SoundNames.Length != 16)
+            {
+                this.SoundNames = new string[16];
+            }
+            else
+            {
+                this.SoundNames = SoundNames;
+            }
+
             AudioFiles = new AudioFileReader[16];
         }
             
@@ -85,5 +97,15 @@ namespace Soundboard
                 throw e;
             }
         }
+
+        public void Save()
+        {
+            Items items = new Items();
+            items.name = Name;
+            items.soundNames = SoundNames;
+
+            string jsonString = JsonSerializer.Serialize(items);
+            File.WriteAllText(Environment.CurrentDirectory + "\\SoundProfiles\\" + items.name + ".json", jsonString);
+        }        
     }
 }

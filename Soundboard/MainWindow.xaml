@@ -23,8 +23,8 @@
                     <Label Content="Volume" HorizontalAlignment="Left" Margin="9,28,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Custom Profiles" Height="165" HorizontalAlignment="Stretch" Margin="0,95,0,0" VerticalAlignment="Top">
-                <Grid Margin="0" Height="167" VerticalAlignment="Top">
+            <GroupBox Header="Custom Profiles" Height="197" HorizontalAlignment="Stretch" Margin="0,95,0,0" VerticalAlignment="Top">
+                <Grid Height="173" VerticalAlignment="Top" Margin="0,0,0,-3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="107*"/>
                         <ColumnDefinition Width="10*"/>
@@ -32,11 +32,12 @@
                     <Label Content="Current profile:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="94"/>
                     <Label x:Name="labelCurrentProfile" x:FieldModifier="public" Content="Pog champ" HorizontalAlignment="Left" Margin="109,0,0,0" VerticalAlignment="Top" Width="135" Grid.ColumnSpan="2"/>
                     <Button x:Name="btnSetProfileAsDefault" Content="Set as default" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
-                    <Button x:Name="btnLoadProfile" Content="Load profile" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
-                    <Button x:Name="btnSaveProfile" Content="Save profile" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnNewProfile" Content="New profile" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnLoadProfile" Content="Load profile" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnSaveProfile" Content="Save profile" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="USB Soundboard" Height="52" HorizontalAlignment="Stretch" Margin="0,265,0,0" VerticalAlignment="Top">
+            <GroupBox Header="USB Soundboard" Height="52" HorizontalAlignment="Stretch" Margin="0,297,0,0" VerticalAlignment="Top">
                 <Grid Height="26" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="107*"/>
@@ -46,7 +47,7 @@
                     <Label Content="Port" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.477,0.026"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Sound Library" Height="289" HorizontalAlignment="Stretch" Margin="0,322,0,0" VerticalAlignment="Top">
+            <GroupBox Header="Sound Library" Height="257" HorizontalAlignment="Stretch" Margin="0,354,0,0" VerticalAlignment="Top">
                 <Grid Margin="0,0,0,-3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="82*"/>

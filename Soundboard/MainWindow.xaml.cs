@@ -19,6 +19,8 @@ using System.Threading;
 
 namespace Soundboard
 {
+
+    // Dynamic playback devices combobox model
     class ViewModel
     {
         public ObservableCollection<PlaybackDevice> PlaybackDevices { get; set; }
